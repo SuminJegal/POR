@@ -11,5 +11,12 @@
         <input type="submit" value="검색">
     </form>
     <p>검색어확인 : {{ search }}</p>
+    <br><br>
+    <p>연관어: 유사도</p>
+   {% for key, value in results.items %}
+        <div>
+            <p>{{ key }} : {{ value }}</p>
+        </div>
+    {% endfor %}
 </body>
 </html>
