@@ -102,3 +102,7 @@ ENV/
 
 # mac
 .DS_Store
+
+#django
+db.sqlite3
+myenv/
