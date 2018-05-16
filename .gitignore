@@ -106,3 +106,4 @@ ENV/
 #django
 db.sqlite3
 myenv/
+.idea

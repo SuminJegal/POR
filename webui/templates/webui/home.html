@@ -71,15 +71,13 @@
                     <td colspan="2"><h5>검색어확인 : {{ search }}</h5></td>
                 </tr>    
                 <tr>
-                    <td><B>연관어</B></td>
-                    <td><B>유사도</B></td>
+                    <td><B>업소명</B></td>
                 </tr>
                 </thead>
                 <tbody>
-                {% for key, value in results.items %}
+                {% for restaurant in results %}
                 <tr>
-                    <td>{{key}}</td>
-                    <td>{{value}}</td>
+                    <td>{{restaurant}}</td>
                 </tr>
                 {% endfor %}
                 <tbody>
