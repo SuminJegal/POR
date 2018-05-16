@@ -46,7 +46,8 @@ def get_picked_restaurant():
                 picked.append(nnp)
         except:
             pass
-    print(picked)
+    #print(picked)
+    return picked
 
 
 def initializing():
@@ -56,9 +57,9 @@ def initializing():
     build_metro()
     sorting_words_by_counting(get_words_from_csvlist())
 
-def main_flow():
-    pick_restaurant_using_dong_keyword(set_keyword(input_key='이태원'))
-    get_picked_restaurant()
+def main_flow(location):
+    pick_restaurant_using_dong_keyword(set_keyword(location))
+    return get_picked_restaurant()
 
 if __name__ == '__main__':
     initializing()

@@ -1,11 +1,12 @@
 from django.shortcuts import render
-from. models import Result
+from data_processing import Searching
 
 def home(request):
     search = ""
-    results = Result.dummy
+    results = []
 
     if (request.method == 'POST'):
-        search = request.POST['search']
+        location = request.POST['search']
+        results = Searching.main_flow(location)
 
     return render(request, 'webui/home.html', {'search':search, 'results':results})
