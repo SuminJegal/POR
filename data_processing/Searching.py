@@ -1,6 +1,12 @@
 import pandas as pd
 import csv
 import os
+from collections import Counter
+from django.conf import settings
+
+
+absolute_path = os.path.dirname(__file__)
+ranked_restaurant = {}
 
 #In init
 def build_restaurant():
@@ -13,15 +19,25 @@ def build_metro():
 
 def get_words_from_csvlist():
     results = list()
-    with open(os.path.join(absolute_path, 'ppp.csv'), newline='', encoding='UTF8') as inputfile:
+    #csvfile = os.path.join(absolute_path, '도곡동_맛집_phrases.csv')
+    csvfile = os.path.join(absolute_path, 'phrases_서울.csv')
+    with open(csvfile, newline='', encoding='UTF8') as inputfile:
         for row in csv.reader(inputfile):
-            results.append(row[0])
+            results += row
     return results
 
 def sorting_words_by_counting(words):
     global nnps
     nnps = pd.Series(words)
     nnps = nnps.value_counts().index
+
+def load_restaurant_rank_file(keyword):
+    folder = "restaurant_data_v1"
+    csvfile = os.path.join(absolute_path, folder, keyword + '_restaurant.csv')
+    print(csvfile)
+    df = pd.read_csv(csvfile, converters={"counter":int}, engine='python', encoding='UTF8')
+    print(df)
+    ranked_restaurant[keyword] = df.sort_values(by=['counter'], ascending=False)
 
 
 #In main flow
@@ -37,6 +53,7 @@ def pick_restaurant_using_dong_keyword(dong_keyword):
         dong_restaurant = seoul_restaurant.loc[seoul_restaurant['dong'] == dong_keyword, 'name']
     except:
         print("There is not dong-name in the list.")
+    return dong_restaurant
 
 def get_picked_restaurant():
     picked = list()
@@ -51,16 +68,14 @@ def get_picked_restaurant():
 
 
 def initializing():
-    global absolute_path
-    absolute_path = os.path.dirname(__file__)
     build_restaurant()
     build_metro()
     sorting_words_by_counting(get_words_from_csvlist())
 
+def initializing_v2():
+    for key in settings.LOCATIONS:
+        load_restaurant_rank_file(key)
+
 def main_flow(location):
     pick_restaurant_using_dong_keyword(set_keyword(location))
     return get_picked_restaurant()
-
-if __name__ == '__main__':
-    initializing()
-    main_flow()

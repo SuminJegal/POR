@@ -1,3 +1,3 @@
 from data_processing import Searching
 
-Searching.initializing()
+Searching.initializing_v2()

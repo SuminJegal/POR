@@ -121,3 +121,5 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
+LOCATIONS = {"도곡동":["도곡동"], "강남역":["역삼동","논현동"], "가로수길":["신사동"], "이태원":["이태원동"]}
+#"대학로":["종로4가","혜화동"],
