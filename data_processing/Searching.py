@@ -1,19 +1,19 @@
 import pandas as pd
 import csv
-
+import os
 
 #In init
 def build_restaurant():
     global seoul_restaurant
-    seoul_restaurant = pd.read_csv(open('processed_restaurant.csv', 'rU'), encoding='utf-8', engine='c')
+    seoul_restaurant = pd.read_csv(open(os.path.join(absolute_path, 'processed_restaurant.csv'), 'rU', encoding='UTF8'), encoding='utf-8', engine='c')
 
 def build_metro():
     global metro
-    metro = pd.read_csv(open('processed_metro.csv', 'rU'), encoding='utf-8', engine='c')
+    metro = pd.read_csv(open(os.path.join(absolute_path, 'processed_metro.csv'), 'rU', encoding='UTF8'), encoding='utf-8', engine='c')
 
 def get_words_from_csvlist():
     results = list()
-    with open('ppp.csv', newline='') as inputfile:
+    with open(os.path.join(absolute_path, 'ppp.csv'), newline='', encoding='UTF8') as inputfile:
         for row in csv.reader(inputfile):
             results.append(row[0])
     return results
@@ -50,6 +50,8 @@ def get_picked_restaurant():
 
 
 def initializing():
+    global absolute_path
+    absolute_path = os.path.dirname(__file__)
     build_restaurant()
     build_metro()
     sorting_words_by_counting(get_words_from_csvlist())
