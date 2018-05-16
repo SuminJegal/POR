@@ -47,15 +47,10 @@
           <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
             <form id="actionform" action="" method="post">
                 {% csrf_token %}
-                 <div class="form-row">
-                <div class="col-12 col-md-9 mb-2 mb-md-0">
-                    {{ form }}
-                </div>
-                <div class="col-12 col-md-3">
-
+                <div class="col-xl-9 mx-auto">
+                    {{ form.locations }}
                 </div>
               </div>
-
             </form>
           </div>
         </div>
@@ -69,10 +64,7 @@
         <h2 class="mb-5">맛집 추천 결과</h2>
         <div class="row">
             <table class="table table-striped">
-                <thead>
-                <tr>
-                    <td colspan="2"><h5>검색어확인 : {{ search }}</h5></td>
-                </tr>    
+                <thead>    
                 <tr>
                     <td><B>업소명</B></td>
                     <td><B>빈도</B></td>

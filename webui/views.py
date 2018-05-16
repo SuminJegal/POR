@@ -5,7 +5,7 @@ from django.conf import settings
 
 class SelectLocationForm(forms.Form):
     LOCATION_CHOICES = ((loc, loc) for loc in settings.LOCATIONS)
-    locations = forms.ChoiceField(choices=LOCATION_CHOICES, widget=forms.Select(attrs={'onchange': 'actionform.submit();'}))
+    locations = forms.ChoiceField(choices=LOCATION_CHOICES, widget=forms.Select(attrs={'onchange': 'actionform.submit();', 'class':'form-control'}))
 
 def home(request):
     search = ""
