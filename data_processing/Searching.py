@@ -32,7 +32,7 @@ def sorting_words_by_counting(words):
     nnps = nnps.value_counts().index
 
 def load_restaurant_rank_file(keyword):
-    folder = "restaurant_data_v1"
+    folder = "restaurant_data_v2"
     csvfile = os.path.join(absolute_path, folder, keyword + '_restaurant.csv')
     print(csvfile)
     df = pd.read_csv(csvfile, converters={"counter":int}, engine='python', encoding='UTF8')
@@ -67,7 +67,7 @@ def get_picked_restaurant():
     return picked
 
 
-def initializing():
+def initializing_v1():
     build_restaurant()
     build_metro()
     sorting_words_by_counting(get_words_from_csvlist())
